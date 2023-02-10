@@ -45,6 +45,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
     // METODO CASE 1
     public static void AgregarProducto(){
     
+            
                 System.out.println("--------------------------------------------------------------");
                 int a=0;
                 int creport=0, cfactur=0;
@@ -71,6 +72,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
 
                 System.out.println("INGRESE EL PRECIO DEL PRODUCTO: ");
                 double precio = scannernumerico.nextDouble();
+                if (precio>0){
                 Venta prec = new Venta();
                 prec.prec = precio;
                 
@@ -100,7 +102,12 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 }
             System.out.println(product[i].producto +" - "+ preci[i].prec);
             
-        }    
+        }
+                }
+                else{
+                    System.out.println("PRECIO INVALIDO DEBE SER MAYOR A 0");
+                }
+                
               
                 
     }
@@ -112,18 +119,40 @@ public class IPC1S12023_PRACTICA1_202201947 {
             long contadorletras;
             System.out.println("INGRESE SU CODIGO PARA VALIDAR SU DESCUENTO: ");
             Codigo = scannercadenas.nextLine();
+            Cdescuento peras = new Cdescuento();
+            peras.Codigo = Codigo;
+            
+            
+            
+            for(int i=0; i< pordes.length;i++){
+                    if(pordes[i]==null){
+                        break;
+                    }
+                    else{
+                        while(pordes[i].Codigo.equals(Codigo)==true){
+                            System.out.println("CODIGO REPETIDO, INGRESE UNO NUEVO; ");
+                            Codigo = scannercadenas.nextLine();
+                            peras.Codigo = Codigo;
+
+                        }
+                            
+                    }
+                }
+            
+            
             contadorletras = Codigo.chars().filter(ch -> ch!= ' ').count();
-            System.out.println(contadorletras);
+            System.out.println("SU CODIGO CONSTA DE : "+contadorletras+ " CARACTERES");
             
             while(contadorletras !=4){
                 System.out.println("SU CODIGO NO ES VALIDO DEBE TENER 4 LETRAS INTENTE DE NUEVO");
                 contadorletras = Codigo.chars().filter(ch -> ch!= ' ').count();
-                System.out.println("SU CODIGO CONTIENE 4 LETRAS, ES VALIDO");
+                
                 System.out.println(contadorletras);
                 break;
             }
             
             if(contadorletras==4){
+                System.out.println("SU CODIGO CONTIENE 4 LETRAS, ES VALIDO");
                 System.out.println("INGRESE LA CANTIDAD DE DESCUENTO QUE POSEE (1-99)%");
                 cantdescuento= scannernumerico.nextDouble();
                 
@@ -169,6 +198,15 @@ public class IPC1S12023_PRACTICA1_202201947 {
         System.out.println("INGRESE SU NOMBRE:");
         String client = scannercadenas.nextLine();
         
+        for(int mayo=0; mayo<product.length;mayo++){
+            if(product[mayo]==null){
+                break;
+            }
+            else
+            {
+                product[mayo].cfactura=0;
+            }
+        }
         System.out.println("DECEA AGREGAR NIT? 1=si   0=no");
         int numnit = scannernumerico.nextInt();
         if(numnit!=1 && numnit!=0){
@@ -177,6 +215,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
         }
         else if (numnit == 1)
         {
+                    
             System.out.println("INGRESE SU NIT: ");
             nit=scannernumerico.nextInt();
             for (int i=0; i<product.length;i++){
@@ -202,7 +241,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 
                 System.out.println("CUANTOS ARTICULOS DECEA LLEVAR");
                 cantarticulos = scannernumerico.nextInt();
-                
+                if(cantarticulos>0){
                 for(int i=0; i<product.length; i++){
                         if(product[i]==null){
                             break;
@@ -221,6 +260,37 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 }
                 System.out.println("DECEA COMPRAR OTRO ARTICULO? 1=si, 0=no");
                 hola = scannernumerico.nextInt();
+
+                
+                }
+                else{
+                    System.out.println("LA CANTIDAD SELECCIONADA ES INCORRECTA, SE LE COLOCARA LA CANTIDAD DE '1' POR DEFECTO");
+                    cantarticulos = 1;
+                    for(int i=0; i<product.length; i++){
+                        if(product[i]==null){
+                            break;
+                        }else if(product[i].producto.equals(producto)==true){
+                            product[i].cfactura = product[i].cfactura+cantarticulos;
+                            product[i].creporte = product[i].creporte+cantarticulos;
+                            subtotal = subtotal +(cantarticulos * preci[i].prec);
+                            System.out.println(subtotal);
+                        }
+                        }
+                for(int i=0; i<product.length;i++){
+                    if(product[i]==null){
+                        break;
+                    }
+                    System.out.println( product[i].producto +"      Q."+ preci[i].prec + " "  );
+                }
+                System.out.println("DECEA COMPRAR OTRO ARTICULO? 1=si, 0=no");
+                hola = scannernumerico.nextInt();
+                    
+                    
+                    
+                    
+                }
+                
+                
             }while(hola!=0);
             
             int op;
@@ -329,6 +399,10 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 System.out.println("CUANTOS ARTICULOS DECEA LLEVAR");
                 cantarticulos = scannernumerico.nextInt();
                 
+                
+                if(cantarticulos>0){
+                    
+                
                 for(int i=0; i<product.length; i++){
                         if(product[i]==null){
                             break;
@@ -347,7 +421,37 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 }
                 System.out.println("DECEA COMPRAR OTRO ARTICULO? 1=si, 0=no");
                 hola = scannernumerico.nextInt();
+                }
+                
+                else{
+                    System.out.println("LA CANTIDAD SELECCIONADA ES INCORRECTA, SE LE COLOCARA LA CANTIDAD DE '1' POR DEFECTO");
+                    cantarticulos = 1;
+                    for(int i=0; i<product.length; i++){
+                        if(product[i]==null){
+                            break;
+                        }else if(product[i].producto.equals(producto)==true){
+                            product[i].cfactura = product[i].cfactura+cantarticulos;
+                            product[i].creporte = product[i].creporte+cantarticulos;
+                            subtotal = subtotal +(cantarticulos * preci[i].prec);
+                            System.out.println(subtotal);
+                        }
+                        }
+                for(int i=0; i<product.length;i++){
+                    if(product[i]==null){
+                        break;
+                    }
+                    System.out.println( product[i].producto +"      Q."+ preci[i].prec + " "  );
+                }
+                System.out.println("DECEA COMPRAR OTRO ARTICULO? 1=si, 0=no");
+                hola = scannernumerico.nextInt();
+                    
+                    
+                    
+                    
+                }
+                
             }while(hola!=0);
+            
             
             int op;
             System.out.println("SU SUBTOTAL ES: " + subtotal);
@@ -393,7 +497,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
                         System.out.println("SU CODIGO TIENE UN DESCUENTO DE: " + cantdescuento + "%");
                         System.out.println("EL TOTAL ES: " + total);
                         System.out.println("---------------------------------------");
-                        
+                        break;
                     }
                 }
             }
@@ -420,6 +524,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
                         }
                         System.out.println("EL TOTAL ES: " +  subtotal);
                         System.out.println("---------------------------------------");
+                        
                         
                     }
             
@@ -555,7 +660,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
         
         
         
-        
+        //SI SE PUDO :)
     }
        
 }
