@@ -11,6 +11,7 @@ import java.util.Scanner;
 /**
  *
  * @author Pablo Rodriguez
+ * // este si es el codigo
  */
 
 class Venta{
@@ -205,6 +206,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
             else
             {
                 product[mayo].cfactura=0;
+                product[mayo].creporte=0;
             }
         }
         System.out.println("DECEA AGREGAR NIT? 1=si   0=no");
@@ -238,6 +240,8 @@ public class IPC1S12023_PRACTICA1_202201947 {
             do{
                 System.out.println("SELECCIONE LOS PRODUCTOS QUE DECEA COMPRAR(ESCRIBA EL NOMBRE DEL PRODUCTO IGUALQUE EN LA BASE DE DATOS)");
                 producto = scannercadenas.nextLine();
+                
+                
                 
                 System.out.println("CUANTOS ARTICULOS DECEA LLEVAR");
                 cantarticulos = scannernumerico.nextInt();
@@ -302,7 +306,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 System.out.println("INGRESE EL CODIGO DE DESCUENTO");
                 co = scannercadenas.nextLine();
                 for(int i = 0;i<pordes.length;i++){
-                    if(product[i]==null){
+                    if(pordes[i]==null){
                         break;
                     }
                     else if(pordes[i].Codigo.equals(co)==true){
@@ -396,6 +400,11 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 System.out.println("SELECCIONE LOS PRODUCTOS QUE DECEA COMPRAR(ESCRIBA EL NOMBRE DEL PRODUCTO IGUALQUE EN LA BASE DE DATOS)");
                 producto = scannercadenas.nextLine();
                 
+                
+                
+                
+                
+                
                 System.out.println("CUANTOS ARTICULOS DECEA LLEVAR");
                 cantarticulos = scannernumerico.nextInt();
                 
@@ -462,7 +471,7 @@ public class IPC1S12023_PRACTICA1_202201947 {
                 System.out.println("INGRESE EL CODIGO DE DESCUENTO");
                 co = scannercadenas.nextLine();
                 for(int i = 0;i<pordes.length;i++){
-                    if(product[i]==null){
+                    if(pordes[i]==null){
                         break;
                     }
                     else if(pordes[i].Codigo.equals(co)==true){
